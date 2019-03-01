@@ -32,12 +32,16 @@ end
 
 function level:spawn(k, x, y)
     if k == "block" then
-        e.block {
+        local conf = {
             position = { x = x,  y = y,  },
             size     = { w = 20, h = 20, },
 
             color    = { 255, 0, 0}
         }
+
+        local id = e.block(conf)
+
+        world:add(id, x, y, conf.size.w, conf.size.h)
     end
 end
 

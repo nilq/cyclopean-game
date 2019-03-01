@@ -5,6 +5,9 @@ bg_accum = 0
 
 e, c, s = unpack(require "libs/ecs")
 game    = require "game"
+bump    = require "libs/bump"
+
+world   = bump.newWorld()
 
 
 local state = game
