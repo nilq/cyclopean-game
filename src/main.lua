@@ -27,8 +27,8 @@ end
 function love.update(dt)
     state:update(dt)
 
-    bg_accum = bg_accum + dt * 10
-    bg_gray = math.sin(bg_accum)
+    bg_accum = bg_accum + dt * 5
+    bg_gray = 1*(1-((1-math.cos(bg_accum * math.pi)) * 0.5)) + 0.5 *((1 - math.cos(bg_accum)))
 
     love.graphics.setBackgroundColor(0, 0, bg_gray)
 end
