@@ -43,6 +43,26 @@ function level:spawn(k, x, y)
 
         world:add(id, x, y, conf.size.w, conf.size.h)
     end
+
+    if k == "player" then
+        local conf = {
+            position = {x = x, y = y},
+            size  = {w = 10, h = 10},
+            color = {255, 255, 0},
+            input = {},
+            physics = {
+                dx = 0,
+                dy = 0,
+                frc_x = 0.5,
+                frc_y = 0.3,
+                speed = 10
+            }
+        }
+
+        local id = e.player(conf)
+
+        world:add(id, x, y, conf.size.w, conf.size.h)
+    end
 end
 
 return level

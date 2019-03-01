@@ -20,22 +20,6 @@ world   = bump.newWorld()
 local state = game
 
 function love.load()
-    for i = 1, 10 do
-        e.player {
-            position = {x = love.math.random(1, 100), y = love.math.random(1, 100)},
-            size = {w = 10, h = 10},
-            color = {255, 0, 0},
-            input = {},
-            physics = {
-                dx = 0,
-                dy = 0,
-                frc_x = 0.5,
-                frc_y = 0.3,
-                speed = 10
-            }
-        }
-    end
-
     state:load()
 end
 
@@ -50,6 +34,4 @@ end
 
 function love.draw()
     state:draw()
-
-    s(s.block)
 end
