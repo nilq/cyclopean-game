@@ -16,6 +16,7 @@ bump    = require "libs/bump"
 
 world   = bump.newWorld()
 
+function math.lerp(a,b,t) return a+(b-a)*t end
 
 local state = game
 
@@ -29,7 +30,7 @@ function love.update(dt)
     bg_accum = bg_accum + dt * 10
     bg_gray = math.sin(bg_accum)
 
-    love.graphics.setBackgroundColor(bg_gray, bg_gray, bg_gray)
+    love.graphics.setBackgroundColor(0, 0, bg_gray)
 end
 
 function love.draw()

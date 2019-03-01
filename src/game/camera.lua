@@ -8,8 +8,8 @@ function make_camera(x, y, sx, sy, r)
     function camera:set()
         love.graphics.push()
         love.graphics.translate(
-            love.graphics.getWidth()  / 2 - self.x,
-            love.graphics.getHeight() / 2 - self.y
+            love.graphics.getWidth()  / 2 - self.x * self.sx,
+            love.graphics.getHeight() / 2 - self.y * self.sy
         )
 
         love.graphics.scale(self.sx, self.sy)

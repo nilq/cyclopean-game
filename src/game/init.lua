@@ -10,7 +10,7 @@ local game   = {
 function game:load()
     level:load("res/levels/0.png")
 
-    self.camera = camera(200, 500, 1, 1, 0)
+    self.camera = camera(200, 500, 2, 2, 0)
 end
 
 function game:update(dt)
