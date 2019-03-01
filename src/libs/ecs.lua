@@ -72,6 +72,13 @@ function emeta:__newindex(name, components)
             -- verify fields
             for _, c in ipairs(self) do
                for field in pairs(component[c]) do
+                  if not init[c] then
+                     error(
+                        "entity: component <" ..
+                           c .. "> required to construct entity <" .. name .. ">",
+                        2
+                     )
+                  end
                   if not init[c][field] then
                      error(
                         "entity: field <" ..
@@ -160,7 +167,8 @@ function smeta:__newindex(name, components)
    for i = 1, #components do
       if not component[components[i]] then
          error(
-            "system: <" .. name .. "> declared with undefined component <" .. c .. ">",
+            "system: <" ..
+               name .. "> declared with undefined component <" .. components[i] .. ">",
             2
          )
       end
