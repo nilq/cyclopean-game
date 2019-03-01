@@ -1,6 +1,15 @@
-local level = {}
+local level = {
+    size = 20,
 
-function level:load(path, world_table)
+    registry = {
+        block  = { 0, 0, 0 },
+        player = { 1, 1, 0 },
+    },
+
+    map = {},
+}
+
+function level:load(path)
     local image = love.image.newImageData(path)
     local map   = {}
 
@@ -22,7 +31,14 @@ function level:load(path, world_table)
 end
 
 function level:spawn(k, x, y)
-    -- spawn
+    if k == "block" then
+        e.block {
+            position = { x = x,  y = y,  },
+            size     = { w = 20, h = 20, },
+
+            color    = { 255, 0, 0}
+        }
+    end
 end
 
 return level

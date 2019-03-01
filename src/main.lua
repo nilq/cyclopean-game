@@ -1,7 +1,14 @@
 bg_gray  = 0.95
 bg_accum = 0
 
+
+
 e, c, s = unpack(require "libs/ecs")
+game    = require "game"
+
+
+local state = game
+
 
 function love.load()
     c.position = {x = 0, y = 0}
@@ -17,6 +24,7 @@ function love.load()
     }
 
     e.player = {"position", "size", "color", "physics", "input"}
+    e.block  = {"position", "size", "color"}
 
     s.player = {"position", "size", "physics", "input"}
     s.player.update = function(i, position, size, physics)
@@ -55,14 +63,22 @@ function love.load()
             }
         }
     end
+
+
+    state:load()
 end
 
 function love.update(dt)
+    state:update(dt)
+
     bg_accum = bg_accum + dt * 10
-    bg_gray = math.sin(bg_accum)
+    bg_gray  = math.sin(bg_accum)
+
     love.graphics.setBackgroundColor(bg_gray, bg_gray, bg_gray)
 end
 
 function love.draw()
+    state:draw()
+
     s(s.block)
 end
