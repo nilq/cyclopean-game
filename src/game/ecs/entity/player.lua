@@ -68,6 +68,8 @@ s.player.update = function(i, position, size, physics, input, player, killable)
     physics.dx = math.cerp(physics.dx, 0, physics.frc_x * game.dt)
     
     if killable.killed then
+    physics.dy = 0
+    physics.dx = 0
     position.x, position.y =
         world:move(
         i,
