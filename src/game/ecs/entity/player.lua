@@ -7,25 +7,25 @@ s.player.update = function(i, position, size, physics, input, player, killable)
 
     -- MOVEMENT:
 
-    if input.left then
-        if math.abs(physics.dx) < 0.1 then
-            physics.dx = math.lerp(physics.dx, -physics.speed, physics.frc_x * game.dt)
+    if input.left and not input.right then
+        if math.abs(physics.dy) < 0.01 then
+            physics.dx = math.lerp(physics.dx, -physics.speed, physics.frc_x * game.dt * 2)
         else
-            physics.dx = physics.dx - physics.speed * game.dt * 2
+            physics.dx = physics.dx - physics.speed * game.dt
         end
     end
 
-    if input.right then
-        if math.abs(physics.dx) < 0.1 then
-            physics.dx = math.lerp(physics.dx, physics.speed, physics.frc_x * game.dt)
+    if input.right and not input.left then
+        if math.abs(physics.dy) < 0.01 then
+            physics.dx = math.lerp(physics.dx, physics.speed, physics.frc_x * game.dt * 2)
         else
-            physics.dx = physics.dx + physics.speed * game.dt * 2
+            physics.dx = physics.dx + physics.speed * game.dt
         end
     end
 
     physics.dx = math.min(math.max(physics.dx, -physics.speed), physics.speed)
 
-    if not (input.left or input.right or math.abs(physics.dy) > 0.1) then
+    if not (input.left and input.right) and math.abs(physics.dy) < 0.01 then
         physics.dx = math.lerp(physics.dx, 0, physics.frc_x * game.dt)
     end
 
