@@ -8,11 +8,25 @@ s.player.update = function(i, position, size, physics, input, player, killable)
     -- MOVEMENT:
 
     if input.left then
-        physics.dx = physics.dx - physics.speed * game.dt
+        if math.abs(physics.dx) < 0.1 then
+            physics.dx = math.lerp(physics.dx, -physics.speed, physics.frc_x * game.dt)
+        else
+            physics.dx = physics.dx - physics.speed * game.dt * 2
+        end
     end
 
     if input.right then
-        physics.dx = physics.dx + physics.speed * game.dt
+        if math.abs(physics.dx) < 0.1 then
+            physics.dx = math.lerp(physics.dx, physics.speed, physics.frc_x * game.dt)
+        else
+            physics.dx = physics.dx + physics.speed * game.dt * 2
+        end
+    end
+
+    physics.dx = math.min(math.max(physics.dx, -physics.speed), physics.speed)
+
+    if not (input.left or input.right or math.abs(physics.dy) > 0.1) then
+        physics.dx = math.lerp(physics.dx, 0, physics.frc_x * game.dt)
     end
 
     if input.respawn then
@@ -65,19 +79,16 @@ s.player.update = function(i, position, size, physics, input, player, killable)
         end
     end
 
-    physics.dx = math.cerp(physics.dx, 0, physics.frc_x * game.dt)
-    
     if killable.killed then
-    physics.dy = 0
-    physics.dx = 0
-    position.x, position.y =
-        world:move(
-        i,
-        killable.spawn_x,
-        killable.spawn_y,
-        function()
-        end
-    )
-    killable.killed = false
-end
+	    physics.dy = 0
+	    physics.dx = 0
+	    position.x, position.y = world:move(
+	        i,
+	        killable.spawn_x,
+	        killable.spawn_y,
+	        function()
+	        end
+	    )
+	    killable.killed = false
+	end
 end

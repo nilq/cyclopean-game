@@ -1,6 +1,6 @@
 s.debug = {"player"}
 s.debug.update = function(i)
-    love.graphics.setColor({255, 255, 255})
+    love.graphics.setColor({0.3, 0, 1})
 end
 
 s.dplayer = {"player"}
