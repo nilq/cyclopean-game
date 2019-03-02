@@ -1,7 +1,7 @@
 e.player = {"position", "direction", "size", "sprite", "physics", "player", "input", "killable"}
 
 s.player = {"position", "size", "physics", "input", "player", "killable"}
-s.player.update = function(i, position, size, physics, input, killable)
+s.player.update = function(i, position, size, physics, input, player, killable)
     physics.grounded = false
     physics.wall_x = 0
 
@@ -68,8 +68,8 @@ s.player.update = function(i, position, size, physics, input, killable)
     physics.dy = math.lerp(physics.dy, 0, physics.frc_y * game.dt)
 
     if killable.killed then
-        print(dump(killable))
         position.x = killable.spawn_x
         position.y = killable.spawn_y
+        killable.killed = false
     end
 end
