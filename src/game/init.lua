@@ -22,7 +22,6 @@ function game:update(dt)
     bg_accum = bg_accum + dt * 0.1
     bg_gray = 1 * (1 - ((1 - math.cos(bg_accum * math.pi)) * 0.5)) + 0.5 * (1 - math.cos(bg_accum))
 
-    love.graphics.setBackgroundColor(0, 0, 0)
     s(s.player)
     s(s.inputReset)
 end
@@ -31,6 +30,8 @@ function game:draw()
     self.camera:set()
 
     s(s.block, s.sprite, s.debug)
+    
+    love.graphics.setBackgroundColor(0, 0, 0)
 
     self.camera:unset()
 end

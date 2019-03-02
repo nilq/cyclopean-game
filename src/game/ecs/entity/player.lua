@@ -60,6 +60,8 @@ s.player.update = function(i, position, size, physics, input, player, killable)
             killable.spawn_y = other.position.y - 25
         elseif (other.murderous) then
             killable.killed = true
+        elseif (other.light) then
+            love.graphics.setBackgroundColor(1, 1, 1)
         elseif (other.color) then
             other.color[1] = 255
             other.color[2] = 255

@@ -4,6 +4,7 @@ local level = {
         block = {0, 0, 0},
         checkpoint = {0, 1, 0},
         murderblock = {1, 0, 0},
+        lightblock = {0, 0, 1},
         player = {1, 1, 0}
     },
     map = {}
@@ -99,6 +100,20 @@ function level:spawn(k, x, y)
         }
 
         local id = e.murderblock(conf)
+
+        world:add(id, x, y, conf.size.w, conf.size.h)
+    end
+
+    
+    if k == "lightblock" then
+        local conf = {
+            position = {x = x, y = y},
+            size = {w = 20, h = 20},
+            color = {255, 255, 255},
+            light = {}
+        }
+
+        local id = e.lightblock(conf)
 
         world:add(id, x, y, conf.size.w, conf.size.h)
     end
