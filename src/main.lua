@@ -5,6 +5,7 @@ e, c, s = unpack(require "libs/ecs")
 require "game/ecs/components"
 
 require "game/ecs/entity/block"
+require "game/ecs/entity/murderblock"
 require "game/ecs/entity/checkpoint"
 require "game/ecs/entity/player"
 

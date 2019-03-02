@@ -2,7 +2,8 @@ local level = {
     size = 20,
     registry = {
         block = {0, 0, 0},
-        checkpoint = {0, 1, 0}, 
+        checkpoint = {0, 1, 0},
+        murderblock = {1, 0, 0},
         player = {1, 1, 0}
     },
     map = {}
@@ -88,6 +89,20 @@ function level:spawn(k, x, y)
 
         world:add(id, x, y, conf.size.w, conf.size.h)
     end
+    
+    if k == "murderblock" then
+        local conf = {
+            position = {x = x, y = y},
+            size = {w = 20, h = 20},
+            color = {255, 0, 0},
+            murderous = {}
+        }
+
+        local id = e.murderblock(conf)
+
+        world:add(id, x, y, conf.size.w, conf.size.h)
+    end
+
 end
 
 return level

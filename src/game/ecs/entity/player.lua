@@ -44,6 +44,8 @@ s.player.update = function(i, position, size, physics, input, player, killable)
         if (other.checkpoint) then
             killable.spawn_x = other.position.x
             killable.spawn_y = other.position.y - 25
+        elseif (other.murderous) then
+            killable.killed = true
         elseif (other.color) then
             other.color[1] = 255
             other.color[2] = 255
