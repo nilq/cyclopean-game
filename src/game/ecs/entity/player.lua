@@ -63,9 +63,9 @@ s.player.update = function(i, position, size, physics, input, player, killable)
         elseif (other.light) then
             love.graphics.setBackgroundColor(1, 1, 1)
         elseif (other.color) then
-            other.color[1] = 255
-            other.color[2] = 255
-            other.color[3] = 0
+            other.color[1] = 0.15
+            other.color[2] = 0.15
+            other.color[3] = 0.15
         end
     end
 
