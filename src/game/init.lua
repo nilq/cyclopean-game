@@ -21,7 +21,7 @@ end
 function game:update(dt)
     self.dt = dt
 
-    bg_accum = bg_accum + dt * 0.5
+    bg_accum = bg_accum + dt * 0.1
     bg_gray = 1 * (1 - ((1 - math.cos(bg_accum * math.pi)) * 0.5)) + 0.5 * (1 - math.cos(bg_accum))
 
     love.graphics.setBackgroundColor(0, 0, 0)

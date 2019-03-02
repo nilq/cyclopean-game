@@ -2,6 +2,7 @@ local level = {
     size = 20,
     registry = {
         block = {0, 0, 0},
+        checkpoint = {0, 1, 0}, 
         player = {1, 1, 0}
     },
     map = {}
@@ -71,6 +72,18 @@ function level:spawn(k, x, y)
         }
 
         local id = e.player(conf)
+
+        world:add(id, x, y, conf.size.w, conf.size.h)
+    end
+
+    if k == "checkpoint" then
+        local conf = {
+            position = {x = x, y = y},
+            size = {w = 20, h = 20},
+            color = {0, 255, 0}
+        }
+
+        local id = e.block(conf)
 
         world:add(id, x, y, conf.size.w, conf.size.h)
     end
