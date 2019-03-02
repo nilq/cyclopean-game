@@ -1,13 +1,14 @@
 c.position = {x = 0, y = 0}
+c.killable = {spawn_x = 0, spawn_y = 0, killed = false}
 c.direction = {1}
 c.size = {w = 0, h = 0}
-c.radius = {r = 0}
 c.color = {0, 0, 0}
 c.sprite = {image = ""}
 c.input = {
     up = false,
     left = false,
-    right = false
+    right = false,
+    respawn = false
 }
 c.physics = {
     dx = 0,

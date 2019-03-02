@@ -44,6 +44,7 @@ function level:spawn(k, x, y)
     if k == "player" then
         local conf = {
             position = {x = x, y = y},
+            killable = {spawn_x = x, spawn_y = y, killed = false},
             size = { w = 14, h = 19 },
             direction = {1},
             sprite = {
@@ -52,7 +53,8 @@ function level:spawn(k, x, y)
             input = {
                 left = false,
                 right = false,
-                up = false
+                up = false,
+                respawn = false
             },
             physics = {
                 dx = 0, -- delta x, fancy term for velocity

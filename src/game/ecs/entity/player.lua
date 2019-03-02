@@ -1,7 +1,7 @@
-e.player = {"position", "direction", "size", "sprite", "physics", "player", "input"}
+e.player = {"position", "direction", "size", "sprite", "physics", "player", "input", "killable"}
 
-s.player = {"position", "size", "physics", "input", "player"}
-s.player.update = function(i, position, size, physics, input)
+s.player = {"position", "size", "physics", "input", "player", "killable"}
+s.player.update = function(i, position, size, physics, input, killable)
     physics.grounded = false
     physics.wall_x = 0
 
@@ -13,6 +13,10 @@ s.player.update = function(i, position, size, physics, input)
 
     if input.right then
         physics.dx = physics.dx + physics.speed * game.dt
+    end
+
+    if input.respawn then
+        killable.killed = true
     end
 
     position.x, position.y, collisions = world:move(i, position.x + physics.dx, position.y + physics.dy)
@@ -32,9 +36,16 @@ s.player.update = function(i, position, size, physics, input)
             physics.dx = 0
         end
 
-        e.get(c.other).color[1] = 0
-        e.get(c.other).color[2] = 255
-        e.get(c.other).color[3] = 0
+        other = e.get(c.other)
+        
+        
+        if(other.checkpoint)then
+            print "checkpoint haha!"
+        elseif (other.color) then
+            other.color[1] = 255
+            other.color[2] = 255
+            other.color[3] = 0
+        end
     end
 
     game.camera.x = math.cerp(game.camera.x, position.x, game.dt * 10)
@@ -55,4 +66,10 @@ s.player.update = function(i, position, size, physics, input)
 
     physics.dx = math.lerp(physics.dx, 0, physics.frc_x * game.dt)
     physics.dy = math.lerp(physics.dy, 0, physics.frc_y * game.dt)
+
+    if killable.killed then
+        print(dump(killable))
+        position.x = killable.spawn_x
+        position.y = killable.spawn_y
+    end
 end
