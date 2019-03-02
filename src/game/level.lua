@@ -42,10 +42,15 @@ function level:spawn(k, x, y)
     end
 
     if k == "player" then
+        local image = love.graphics.newImage("res/player_yellow.png")
+        image:setFilter("nearest", "nearest")
         local conf = {
             position = {x = x, y = y},
-            size = {w = 10, h = 10},
-            color = {255, 255, 0},
+            size = {w = 20, h = 20},
+            direction = {1},
+            sprite = {
+                image = image
+            },
             input = {
                 left = false,
                 right = false,
@@ -58,7 +63,7 @@ function level:spawn(k, x, y)
                 frc_y = 3,
                 speed = 10, -- horizontal acceleration
                 grounded = false, -- standing on the ground?
-                gravity = 35, -- when not grounded, dy is set to gravity
+                gravity = 9.8, -- when not grounded, dy is set to gravity
                 jump_force = 8, -- when jumping and grounded, dy is set to -jump_force
                 wall_x = 0 -- what side the player is touching a wall: -1 left, 0 none, 1 right
             },
@@ -72,10 +77,9 @@ function level:spawn(k, x, y)
 
     if k == "blot" then
         local conf = {
-            position = { x = x,  y = y,  },
-            radius     = { r = 400 },
-
-            color    = { 0, 0, 0}
+            position = {x = x, y = y},
+            radius = {r = 400},
+            color = {0, 0, 0}
         }
 
         local id = e.blot(conf)

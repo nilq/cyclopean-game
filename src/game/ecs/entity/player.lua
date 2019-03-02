@@ -1,4 +1,4 @@
-e.player = {"position", "size", "color", "physics", "player", "input"}
+e.player = {"position", "direction", "size", "sprite", "physics", "player", "input"}
 
 s.player = {"position", "size", "physics", "input", "player"}
 s.player.update = function(i, position, size, physics, input)
@@ -15,8 +15,7 @@ s.player.update = function(i, position, size, physics, input)
         physics.dx = physics.dx + physics.speed * game.dt
     end
 
-    position.x, position.y, collisions =
-        world:move(i, position.x + physics.dx, position.y + physics.dy)
+    position.x, position.y, collisions = world:move(i, position.x + physics.dx, position.y + physics.dy)
 
     for i, c in ipairs(collisions) do
         if c.normal.y ~= 0 then
@@ -32,7 +31,7 @@ s.player.update = function(i, position, size, physics, input)
 
             physics.dx = 0
         end
-        
+
         e.get(c.other).color[1] = 0
         e.get(c.other).color[2] = 255
         e.get(c.other).color[3] = 0
@@ -49,8 +48,8 @@ s.player.update = function(i, position, size, physics, input)
         if physics.grounded then
             physics.dy = -physics.jump_force
         elseif physics.wall_x ~= 0 then
-            physics.dy = -physics.jump_force * 1.1
-            physics.dx = physics.wall_x * physics.jump_force * 1.1
+            physics.dy = -physics.jump_force * 2
+            physics.dx = physics.wall_x * physics.speed * 1.5
         end
     end
 

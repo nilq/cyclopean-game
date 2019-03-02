@@ -3,9 +3,9 @@ s.debug.update = function(i)
     love.graphics.setColor({255, 255, 255})
 end
 
-s.dposition = {"position", "player"}
-s.dposition.update = function(i, position)
-    love.graphics.print("position: " .. dump(position), 0, 0)
+s.dplayer = {"player"}
+s.dplayer.update = function(i)
+    love.graphics.print(dump(e.get(i)), 0, 0)
 end
 
 s.dsize = {"size", "player"}
@@ -23,4 +23,4 @@ s.dphysics.update = function(i, physics)
     love.graphics.print("physics: " .. dump(physics), 0, 200)
 end
 
-return {s.debug, s.dposition, s.dsize, s.dinput, s.dphysics}
+return {s.debug, s.dplayer}

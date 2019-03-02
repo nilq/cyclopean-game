@@ -79,23 +79,21 @@ function emeta:__newindex(name, components)
          -- e.name{init}
          __call = function(self, init)
             -- verify fields
+            for c, _ in pairs(init) do
+               if type(_) ~= "table" then
+                  error("entity: <" .. name .. "> component <" .. c .. "> must be a table", 2)
+               end
+               if component[c] == nil then
+                  error("entity: <" .. name .. "> component <" .. c .. "> is not defined", 2)
+               end
+            end
             for _, c in ipairs(self) do
-               for field in pairs(component[c]) do
-                  if init[c] == nil then
-                     error(
-                        "entity: component <" ..
-                           c .. "> required to construct entity <" .. name .. ">",
-                        2
-                     )
-                  end
-                  if init[c][field] == nil then
-                     error(
-                        "entity: field <" ..
-                           field ..
-                              "> required for <" ..
-                                 c .. "> to construct entity <" .. name .. ">",
-                        2
-                     )
+               if init[c] == nil then
+                  error("entity: <" .. name .. "> requires component <" .. c .. ">", 2)
+               end
+               for f in pairs(component[c]) do
+                  if init[c][f] == nil then
+                     error("entity: <" .. name .. "> component <" .. c .. "> requires field <" .. f .. ">", 2)
                   end
                end
             end
@@ -144,6 +142,11 @@ end
 -- c.name = fields
 function cmeta:__newindex(name, fields)
    cmeta.__index[name] = {}
+
+   if type(fields) ~= "table" then
+      error("component: <" .. name .. "> must be a table", 2)
+   end
+
    rawset(self, name, fields)
 end
 
@@ -175,11 +178,7 @@ function smeta:__newindex(name, components)
    local datakey = "return function(id) return id"
    for i = 1, #components do
       if component[components[i]] == nil then
-         error(
-            "system: <" ..
-               name .. "> declared with undefined component <" .. components[i] .. ">",
-            2
-         )
+         error("system: <" .. name .. "> component <" .. components[i] .. "> is not defined", 2)
       end
 
       datakey = datakey .. ", " .. components[i] .. "[id]"

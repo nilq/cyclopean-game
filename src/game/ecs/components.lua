@@ -1,7 +1,9 @@
 c.position = {x = 0, y = 0}
+c.direction = {1}
 c.size = {w = 0, h = 0}
 c.radius = {r = 0}
 c.color = {0, 0, 0}
+c.sprite = {image = ""}
 c.input = {
     up = false,
     left = false,

@@ -33,7 +33,7 @@ end
 function game:draw()
     self.camera:set()
 
-    s(s.block, s.debug)
+    s(s.block, s.sprite, s.debug)
 
     self.camera:unset()
 end
