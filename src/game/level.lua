@@ -1,17 +1,15 @@
 local level = {
     size = 20,
-
     registry = {
-        block  = { 0, 0, 0 },
-        player = { 1, 1, 0 },
+        block = {0, 0, 0},
+        player = {1, 1, 0}
     },
-
-    map = {},
+    map = {}
 }
 
 function level:load(path)
     local image = love.image.newImageData(path)
-    local map   = {}
+    local map = {}
 
     for x = 1, image:getWidth() do
         map[x] = {}
@@ -33,10 +31,9 @@ end
 function level:spawn(k, x, y)
     if k == "block" then
         local conf = {
-            position = { x = x,  y = y,  },
-            size     = { w = 20, h = 20, },
-
-            color    = { 255, 0, 0}
+            position = {x = x, y = y},
+            size = {w = 20, h = 20},
+            color = {255, 0, 0}
         }
 
         local id = e.block(conf)
@@ -47,20 +44,25 @@ function level:spawn(k, x, y)
     if k == "player" then
         local conf = {
             position = {x = x, y = y},
-            size     = {w = 10, h = 10},
-            color    = {255, 255, 0},
-            input    = {},
-            physics  = {
-                dx         = 0,    -- delta x, fancy term for velocity
-                dy         = 0,
-                frc_x      = 5,    -- delta x linearly interpolates towards 0 at `delta time * frc_x`
-                frc_y      = 3,
-                speed      = 10,   -- horizontal acceleration
-                grounded   = false,-- standing on the ground?
-                gravity    = 35,   -- when not grounded, dy is set to gravity
-                jump_force = 8,    -- when jumping and grounded, dy is set to -jump_force
-                wall_x     = 0,    -- what side the player is touching a wall: -1 left, 0 none, 1 right
-            }
+            size = {w = 10, h = 10},
+            color = {255, 255, 0},
+            input = {
+                left = false,
+                right = false,
+                up = false
+            },
+            physics = {
+                dx = 0, -- delta x, fancy term for velocity
+                dy = 0,
+                frc_x = 5, -- delta x linearly interpolates towards 0 at `delta time * frc_x`
+                frc_y = 3,
+                speed = 10, -- horizontal acceleration
+                grounded = false, -- standing on the ground?
+                gravity = 35, -- when not grounded, dy is set to gravity
+                jump_force = 8, -- when jumping and grounded, dy is set to -jump_force
+                wall_x = 0 -- what side the player is touching a wall: -1 left, 0 none, 1 right
+            },
+            player = {}
         }
 
         local id = e.player(conf)
