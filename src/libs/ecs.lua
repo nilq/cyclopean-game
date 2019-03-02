@@ -79,7 +79,7 @@ function emeta:__newindex(name, components)
                         2
                      )
                   end
-                  if not init[c][field] then
+                  if init[c][field] == nil then
                      error(
                         "entity: field <" ..
                            field ..

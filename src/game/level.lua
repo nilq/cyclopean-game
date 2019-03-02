@@ -47,15 +47,19 @@ function level:spawn(k, x, y)
     if k == "player" then
         local conf = {
             position = {x = x, y = y},
-            size  = {w = 10, h = 10},
-            color = {255, 255, 0},
-            input = {},
-            physics = {
-                dx = 0,
-                dy = 0,
-                frc_x = 0.5,
-                frc_y = 0.3,
-                speed = 10
+            size     = {w = 10, h = 10},
+            color    = {255, 255, 0},
+            input    = {},
+            physics  = {
+                dx         = 0,    -- delta x, fancy term for velocity
+                dy         = 0,
+                frc_x      = 5,    -- delta x linearly interpolates towards 0 at `delta time * frc_x`
+                frc_y      = 3,
+                speed      = 10,   -- horizontal acceleration
+                grounded   = false,-- standing on the ground?
+                gravity    = 35,   -- when not grounded, dy is set to gravity
+                jump_force = 8,    -- when jumping and grounded, dy is set to -jump_force
+                wall_x     = 0,    -- what side the player is touching a wall: -1 left, 0 none, 1 right
             }
         }
 
