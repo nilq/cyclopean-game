@@ -42,14 +42,12 @@ function level:spawn(k, x, y)
     end
 
     if k == "player" then
-        local image = love.graphics.newImage("res/player_yellow.png")
-        image:setFilter("nearest", "nearest")
         local conf = {
             position = {x = x, y = y},
-            size = {w = 20, h = 20},
+            size = { w = 14, h = 19 },
             direction = {1},
             sprite = {
-                image = image
+                image = SPRITE_REGISTRY.player
             },
             input = {
                 left = false,

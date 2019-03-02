@@ -18,6 +18,13 @@ game = require "game"
 
 bump = require "libs/bump"
 
+love.graphics.setDefaultFilter("nearest", "nearest")
+
+SPRITE_REGISTRY = {
+    player = love.graphics.newImage("res/player_yellow.png"),
+}
+
+
 function math.lerp(a, b, t)
     return a + (b - a) * t
 end
