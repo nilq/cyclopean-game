@@ -1,4 +1,4 @@
-e.player = {"position", "size", "color", "physics", "input"}
+e.player = {"position", "size", "color", "physics", "input", "player"}
 
 s.player = {"position", "size", "physics", "input"}
 s.player.update = function(i, position, size, physics)
@@ -34,6 +34,10 @@ s.player.update = function(i, position, size, physics)
 
             physics.dx = 0
         end
+        
+        e.get(c.other).color[1] = 0
+        e.get(c.other).color[2] = 255
+        e.get(c.other).color[3] = 0
     end
 
 

@@ -1,0 +1,1 @@
+e.blot = {"position", "radius", "color"}

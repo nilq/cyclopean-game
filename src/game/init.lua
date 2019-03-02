@@ -14,6 +14,8 @@ function game:load()
     level:load("res/levels/0.png")
 
     self.camera = camera(200, 500, 3, 3, 0)
+
+    level:spawn("blot", 0, 0)
 end
 
 function game:update(dt)

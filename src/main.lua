@@ -5,9 +5,11 @@ e, c, s = unpack(require "libs/ecs")
 require "game/ecs/components"
 
 require "game/ecs/entity/block"
+require "game/ecs/entity/blot"
 require "game/ecs/entity/player"
 
 require "game/ecs/system/block"
+require "game/ecs/system/blot"
 require "game/ecs/system/physics"
 
 game    = require "game"
@@ -34,10 +36,10 @@ end
 function love.update(dt)
     state:update(dt)
 
-    bg_accum = bg_accum + dt * 5
+    bg_accum = bg_accum + dt * 0.5
     bg_gray = 1 * (1 - ((1 - math.cos(bg_accum * math.pi)) * 0.5)) + 0.5 * ((1 - math.cos(bg_accum)))
 
-    love.graphics.setBackgroundColor(0, 0, bg_gray)
+    love.graphics.setBackgroundColor(bg_gray, 0, 0)
 end
 
 function love.draw()

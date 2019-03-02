@@ -1,5 +1,6 @@
 c.position = {x = 0, y = 0}
 c.size = {w = 0, h = 0}
+c.radius = {r = 0}
 c.color = {0, 0, 0}
 c.input = {}
 c.physics = {
@@ -12,3 +13,4 @@ c.physics = {
     gravity  = 10,
     wall_x   = 0, -- 0 is none, -1 is left, 1 is right
 }
+c.player = {}
