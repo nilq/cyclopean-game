@@ -45,7 +45,7 @@ function level:spawn(k, x, y)
         local conf = {
             position = {x = x, y = y},
             killable = {spawn_x = x, spawn_y = y, killed = false},
-            size = { w = 14, h = 19 },
+            size = {w = 14, h = 19},
             direction = {1},
             sprite = {
                 image = SPRITE_REGISTRY.player
@@ -61,10 +61,10 @@ function level:spawn(k, x, y)
                 dy = 0,
                 frc_x = 5, -- delta x linearly interpolates towards 0 at `delta time * frc_x`
                 frc_y = 3,
-                speed = 10, -- horizontal acceleration
+                speed = 6, -- horizontal acceleration
                 grounded = false, -- standing on the ground?
                 gravity = 9.8, -- when not grounded, dy is set to gravity
-                jump_force = 8, -- when jumping and grounded, dy is set to -jump_force
+                jump_force = 6, -- when jumping and grounded, dy is set to -jump_force
                 wall_x = 0 -- what side the player is touching a wall: -1 left, 0 none, 1 right
             },
             player = {}
