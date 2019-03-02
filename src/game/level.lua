@@ -74,16 +74,6 @@ function level:spawn(k, x, y)
 
         world:add(id, x, y, conf.size.w, conf.size.h)
     end
-
-    if k == "blot" then
-        local conf = {
-            position = {x = x, y = y},
-            radius = {r = 400},
-            color = {0, 0, 0}
-        }
-
-        local id = e.blot(conf)
-    end
 end
 
 return level

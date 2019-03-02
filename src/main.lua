@@ -5,11 +5,9 @@ e, c, s = unpack(require "libs/ecs")
 require "game/ecs/components"
 
 require "game/ecs/entity/block"
-require "game/ecs/entity/blot"
 require "game/ecs/entity/player"
 
 require "game/ecs/system/block"
-require "game/ecs/system/blot"
 require "game/ecs/system/physics"
 require "game/ecs/system/sprite"
 require "game/ecs/system/input"
