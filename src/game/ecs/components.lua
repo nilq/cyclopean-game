@@ -21,3 +21,4 @@ c.physics = {
     wall_x = 0 -- 0 is none, -1 is left, 1 is right
 }
 c.player = {}
+c.checkpoint = {}

@@ -80,10 +80,11 @@ function level:spawn(k, x, y)
         local conf = {
             position = {x = x, y = y},
             size = {w = 20, h = 20},
-            color = {0, 255, 0}
+            color = {0, 255, 0},
+            checkpoint = {}
         }
 
-        local id = e.block(conf)
+        local id = e.checkpoint(conf)
 
         world:add(id, x, y, conf.size.w, conf.size.h)
     end

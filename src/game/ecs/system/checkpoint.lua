@@ -1,4 +1,4 @@
-s.checkpoint = {"position", "size", "color"}
+s.checkpoint = {"position", "size", "color", "checkpoint"}
 s.checkpoint.draw = function(i, position, size, color)
     -- sprite later
     love.graphics.setColor(color)

@@ -1,1 +1,1 @@
-e.checkpoint = {"position", "size", "color", "spawnpos"}
+e.checkpoint = {"position", "size", "color", "checkpoint"}

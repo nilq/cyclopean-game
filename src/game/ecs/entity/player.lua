@@ -42,7 +42,8 @@ s.player.update = function(i, position, size, physics, input, player, killable)
         other = e.get(c.other)
 
         if (other.checkpoint) then
-            print "checkpoint haha!"
+            killable.spawn_x = other.position.x
+            killable.spawn_y = other.position.y - 25
         elseif (other.color) then
             other.color[1] = 255
             other.color[2] = 255
@@ -63,10 +64,16 @@ s.player.update = function(i, position, size, physics, input, player, killable)
     end
 
     physics.dx = math.cerp(physics.dx, 0, physics.frc_x * game.dt)
-
+    
     if killable.killed then
-        position.x = killable.spawn_x
-        position.y = killable.spawn_y
-        killable.killed = false
-    end
+    position.x, position.y =
+        world:move(
+        i,
+        killable.spawn_x,
+        killable.spawn_y,
+        function()
+        end
+    )
+    killable.killed = false
+end
 end
