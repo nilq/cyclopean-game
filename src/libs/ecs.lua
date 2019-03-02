@@ -44,6 +44,16 @@ function emeta.__index.delete(id)
    end
 end
 
+-- get entity components by id
+-- components = e.get(id)
+function emeta.__index.get(id)
+   local e = {}
+   for i, c in pairs(component) do
+      e[i] = cmeta.__index[i][id]
+   end
+   return e
+end
+
 -- new entity type
 -- e.name = components
 function emeta:__newindex(name, components)
@@ -52,7 +62,7 @@ function emeta:__newindex(name, components)
    local syskeys = make_keys(components)
 
    for _, key in ipairs(syskeys) do
-      if not smeta.bykey[key] then
+      if smeta.bykey[key] == nil then
          smeta.bykey[key] = {free = {}, etos = {}, used = 0}
       end
    end
@@ -68,11 +78,10 @@ function emeta:__newindex(name, components)
          -- constructor
          -- e.name{init}
          __call = function(self, init)
-            -- print(dump(syskeys))
             -- verify fields
             for _, c in ipairs(self) do
                for field in pairs(component[c]) do
-                  if not init[c] then
+                  if init[c] == nil then
                      error(
                         "entity: component <" ..
                            c .. "> required to construct entity <" .. name .. ">",
@@ -158,14 +167,14 @@ function smeta:__newindex(name, components)
    end
    table.sort(syskey)
    syskey = table.concat(syskey, "")
-   if not smeta.bykey[syskey] then
+   if smeta.bykey[syskey] == nil then
       smeta.bykey[syskey] = {free = {}, used = 0}
    end
 
    -- verify component existence and build key
    local datakey = "return function(id) return id"
    for i = 1, #components do
-      if not component[components[i]] then
+      if component[components[i]] == nil then
          error(
             "system: <" ..
                name .. "> declared with undefined component <" .. components[i] .. ">",
@@ -200,7 +209,7 @@ function smeta:__newindex(name, components)
                   for e = 1, system.used do -- for each subsystem
                      local id = system[e] -- get real id
 
-                     if not system.free[id] then -- if entity is active
+                     if system.free[id] == nil then -- if entity is active
                         subsys(datakey(id))
                      end
                   end
