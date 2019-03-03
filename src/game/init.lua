@@ -13,7 +13,7 @@ function game:load()
 
     level:load("res/levels/0.png")
 
-    --love.window.setMode(200, 500, {fullscreen=true, msaa=0})
+    love.window.setMode(200, 500, {fullscreen=true, msaa=0})
 
     self.camera = camera(800, 400, 1, 1, 0)
 end
