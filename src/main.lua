@@ -50,6 +50,7 @@ res = {
             res = love.audio.newSource("res/sound/ambience.wav", "stream"),
             play = function(self)
                 self.res:setVolume(0.1)
+                self.res:setLooping(true)
                 love.audio.play(self.res)
             end
         },
