@@ -1,6 +1,7 @@
 res = {
     sprite = {
-        player = love.graphics.newImage("res/sprites/player.png")
+        player = love.graphics.newImage("res/sprites/player.png"),
+        gold = love.graphics.newImage("res/sprites/coin.png")
     },
     sound = {
         jump = {
@@ -26,6 +27,13 @@ res = {
         },
         death = {
             res = love.audio.newSource("res/sound/plop.wav", "static"),
+            play = function(self)
+                self.res:setVolume(0.5)
+                love.audio.play(self.res)
+            end
+        },
+        laugh = {
+            res = love.audio.newSource("res/sound/laugh.wav", "static"),
             play = function(self)
                 self.res:setVolume(0.5)
                 love.audio.play(self.res)

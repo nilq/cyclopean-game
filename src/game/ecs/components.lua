@@ -24,3 +24,4 @@ c.player = {}
 c.checkpoint = {}
 c.murderous = {}
 c.light = {}
+c.gold = {}

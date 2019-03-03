@@ -6,7 +6,8 @@ local level = {
         checkpoint = {0, 1, 0},
         murderblock = {1, 0, 0},
         lightblock = {0, 0, 1},
-        player = {1, 1, 0}
+        player = {1, 1, 0},
+        gold = {0, 1, 1}
     },
     map = {}
 }
@@ -115,7 +116,6 @@ function level:spawn(k, x, y)
         world:add(id, x, y, conf.size.w, conf.size.h)
     end
 
-
     if k == "lightblock" then
         local conf = {
             position = {x = x, y = y},
@@ -125,6 +125,20 @@ function level:spawn(k, x, y)
         }
 
         local id = e.lightblock(conf)
+
+        world:add(id, x, y, conf.size.w, conf.size.h)
+    end
+
+    if k == "gold" then
+        local conf = {
+            position = {x = x, y = y},
+            size = {w = 20, h = 20},
+            sprite = {image = res.sprite.gold},
+            direction = {1},
+            gold = {}
+        }
+
+        local id = e.gold(conf)
 
         world:add(id, x, y, conf.size.w, conf.size.h)
     end
