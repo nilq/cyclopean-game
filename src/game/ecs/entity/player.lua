@@ -5,37 +5,7 @@ s.player.update = function(i, position, size, physics, input, player, killable)
     physics.grounded = false
     physics.wall_x = 0
 
-    -- MOVEMENT:
-
-    if input.left and not input.right then
-        if math.abs(physics.dy) < 0.01 then
-            physics.dx = math.lerp(physics.dx, -physics.speed, physics.frc_x * game.dt * 2)
-        else
-            physics.dx = physics.dx - physics.speed * game.dt
-        end
-    end
-
-    if input.right and not input.left then
-        if math.abs(physics.dy) < 0.01 then
-            physics.dx = math.lerp(physics.dx, physics.speed, physics.frc_x * game.dt * 2)
-        else
-            physics.dx = physics.dx + physics.speed * game.dt
-        end
-    end
-
-    physics.dx = math.min(math.max(physics.dx, -physics.speed), physics.speed)
-
-    if not (input.left and input.right) and math.abs(physics.dy) < 0.01 then
-        physics.dx = math.lerp(physics.dx, 0, physics.frc_x * game.dt)
-    end
-
-    if input.respawn then
-        killable.killed = true
-    end
-
-    if not physics.grounded then
-        physics.dy = physics.dy + physics.gravity * game.dt
-    end
+    -- COLLISIONS --
 
     position.x, position.y, collisions = world:move(i, position.x + physics.dx, position.y + physics.dy)
 
@@ -69,8 +39,31 @@ s.player.update = function(i, position, size, physics, input, player, killable)
         end
     end
 
-    game.camera.x = math.cerp(game.camera.x, position.x, game.dt * 10)
-    game.camera.y = math.cerp(game.camera.y, position.y, game.dt * 10)
+    -- MOVEMENT --
+
+    physics.dy = physics.dy + physics.gravity * game.dt
+
+    if input.left and not input.right then
+        if physics.grounded then
+            physics.dx = math.lerp(physics.dx, -physics.speed, physics.frc_x * game.dt * 2)
+        else
+            physics.dx = physics.dx - physics.speed * game.dt
+        end
+    end
+
+    if input.right and not input.left then
+        if physics.grounded then
+            physics.dx = math.lerp(physics.dx, physics.speed, physics.frc_x * game.dt * 2)
+        else
+            physics.dx = physics.dx + physics.speed * game.dt
+        end
+    end
+
+    physics.dx = math.min(math.max(physics.dx, -physics.speed), physics.speed)
+
+    if not (input.left and input.right) and physics.grounded then
+        physics.dx = math.lerp(physics.dx, 0, physics.frc_x * game.dt)
+    end
 
     if input.up then
         if physics.grounded then
@@ -79,6 +72,12 @@ s.player.update = function(i, position, size, physics, input, player, killable)
             physics.dy = -physics.jump_force
             physics.dx = physics.wall_x * physics.speed / 2
         end
+    end
+
+    -- DEATH --
+
+    if input.respawn then
+        killable.killed = true
     end
 
     if killable.killed then
@@ -93,4 +92,9 @@ s.player.update = function(i, position, size, physics, input, player, killable)
 	    )
 	    killable.killed = false
 	end
+
+    -- CAMERA --
+
+    game.camera.x = math.cerp(game.camera.x, position.x, game.dt * 10)
+    game.camera.y = math.cerp(game.camera.y, position.y, game.dt * 10)
 end

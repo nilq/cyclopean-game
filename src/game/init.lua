@@ -13,14 +13,13 @@ function game:load()
 
     level:load("res/levels/0.png")
 
+    --love.window.setMode(200, 500, {fullscreen=true, msaa=0})
+
     self.camera = camera(200, 500, 1, 1, 0)
 end
 
 function game:update(dt)
     self.dt = dt
-
-    bg_accum = bg_accum + dt * 0.1
-    bg_gray = 1 * (1 - ((1 - math.cos(bg_accum * math.pi)) * 0.5)) + 0.5 * (1 - math.cos(bg_accum))
 
     s(s.player)
     s(s.inputReset)

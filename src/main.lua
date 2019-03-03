@@ -11,7 +11,6 @@ require "game/ecs/entity/checkpoint"
 require "game/ecs/entity/player"
 
 require "game/ecs/system/block"
-require "game/ecs/system/physics"
 require "game/ecs/system/sprite"
 require "game/ecs/system/input"
 
