@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2019 niels nielsen
+Copyright (c) 2019 niels nielsen, evolbug, regsagc
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,15 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+---
+
+THIS GAME USES:
+
+libs/bump.lua: MIT LICENSE, 2014 Enrique García Cota https://github.com/kikito/bump.lua
+libs/ecs.lua: MIT LICENSE, 2018 Daniels Kursits (evolbug) https://github.com/antloop-studios/ecs
+
+res/sound/ambience.wav: CC BY 3.0, 2015 Npeo https://freesound.org/s/266902/
+res/sound/woosh_1-4.wav: CC BY 3.0, 2017 berglindsi https://freesound.org/s/402977/
+res/sound/plop.wav: CC BY 3.0, 2013 syrinscape https://freesound.org/s/207569/
+res/sound/laugh.wav: CC BY 3.0, 2010 The Baron https://freesound.org/s/98382/
