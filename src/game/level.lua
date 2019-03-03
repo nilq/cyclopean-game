@@ -90,7 +90,7 @@ function level:spawn(k, x, y)
 
         world:add(id, x, y, conf.size.w, conf.size.h)
     end
-    
+
     if k == "murderblock" then
         local conf = {
             position = {x = x, y = y},
@@ -104,7 +104,7 @@ function level:spawn(k, x, y)
         world:add(id, x, y, conf.size.w, conf.size.h)
     end
 
-    
+
     if k == "lightblock" then
         local conf = {
             position = {x = x, y = y},

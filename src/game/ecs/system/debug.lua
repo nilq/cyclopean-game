@@ -8,19 +8,9 @@ s.dplayer.update = function(i)
     love.graphics.print(dump(e.get(i)), 0, 0)
 end
 
-s.dsize = {"size", "player"}
-s.dsize.update = function(i, size)
-    love.graphics.print("size: " .. dump(size), 0, 60)
+s.dfps = {"player"}
+s.dfps.update = function(i)
+    love.graphics.print("tps: "..game.dt, 10, 0)
 end
 
-s.dinput = {"input", "player"}
-s.dinput.update = function(i, input)
-    love.graphics.print("input: " .. dump(input), 0, 120)
-end
-
-s.dphysics = {"physics", "player"}
-s.dphysics.update = function(i, physics)
-    love.graphics.print("physics: " .. dump(physics), 0, 200)
-end
-
-return {s.debug, s.dplayer}
+return {s.debug, s.dplayer, s.dfps}

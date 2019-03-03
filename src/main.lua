@@ -1,3 +1,5 @@
+require "conf"
+
 bg_gray = 0.95
 bg_accum = 0
 
