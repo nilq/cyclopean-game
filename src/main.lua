@@ -45,7 +45,22 @@ res = {
                 love.audio.play(self.res[self.i])
                 self.i = (self.i % 4) + 1
             end
+        },
+        ambience = {
+            res = love.audio.newSource("res/sound/ambience.wav", "stream"),
+            play = function(self)
+                self.res:setVolume(0.1)
+                love.audio.play(self.res)
+            end
+        },
+        death = {
+            res = love.audio.newSource("res/sound/plop.wav", "static"),
+            play = function(self)
+                self.res:setVolume(0.5)
+                love.audio.play(self.res)
+            end
         }
+
     }
 }
 

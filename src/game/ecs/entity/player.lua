@@ -90,7 +90,8 @@ s.player.update = function(i, position, size, physics, input, player, killable)
 	        killable.spawn_y,
 	        function()
 	        end
-	    )
+        )
+        res.sound.death:play()
 	    killable.killed = false
 	end
 

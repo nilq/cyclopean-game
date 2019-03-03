@@ -12,6 +12,7 @@ function game:load()
     end
 
     level:load("res/levels/0.png")
+    res.sound.ambience:play()
 
     love.window.setMode(200, 500, {fullscreen=true, msaa=0})
 
