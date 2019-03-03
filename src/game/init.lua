@@ -26,11 +26,13 @@ function game:update(dt)
 end
 
 function game:draw()
+    love.graphics.setBackgroundColor(0, 0, 0)
+
     self.camera:set()
 
+    love.graphics.setShader(effect)
+
     s(s.block, s.sprite, s.debug)
-    
-    love.graphics.setBackgroundColor(0, 0, 0)
 
     self.camera:unset()
 end
