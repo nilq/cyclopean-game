@@ -1,7 +1,5 @@
-local path = "src/game/"
-
-local level = require(path .. "level")
-local camera = require(path .. "camera")
+local level = require "game/level"
+local camera = require "game/camera"
 local game = {
     dt = 0
 }

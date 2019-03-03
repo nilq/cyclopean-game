@@ -4,7 +4,6 @@
    MIT License, 2019
 --]]
 ---- MISC -------------------------------------------------------------------------------
-require "libs/dump"
 
 -- build system cache keys
 local function make_keys(components, c)

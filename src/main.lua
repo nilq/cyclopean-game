@@ -17,53 +17,10 @@ require "game/ecs/system/sprite"
 require "game/ecs/system/input"
 require "game/ecs/system/sound"
 
-debugSystems = require "game/ecs/system/debug"
 
 game = require "game"
-
 bump = require "libs/bump"
-
-piefiller = require "libs/piefiller"
-
-
-love.graphics.setDefaultFilter("nearest", "nearest")
-
-res = {
-    sprite = {
-        player = love.graphics.newImage("res/player_yellow.png")
-    },
-    sound = {
-        jump = {
-            i = 1,
-            res = {
-                love.audio.newSource("res/sound/woosh_1.wav", "static"),
-                love.audio.newSource("res/sound/woosh_2.wav", "static"),
-                love.audio.newSource("res/sound/woosh_3.wav", "static"),
-                love.audio.newSource("res/sound/woosh_4.wav", "static"),
-            },
-            play = function(self)
-                love.audio.play(self.res[self.i])
-                self.i = (self.i % 4) + 1
-            end
-        },
-        ambience = {
-            res = love.audio.newSource("res/sound/ambience.wav", "stream"),
-            play = function(self)
-                self.res:setVolume(0.1)
-                self.res:setLooping(true)
-                love.audio.play(self.res)
-            end
-        },
-        death = {
-            res = love.audio.newSource("res/sound/plop.wav", "static"),
-            play = function(self)
-                self.res:setVolume(0.5)
-                love.audio.play(self.res)
-            end
-        }
-
-    }
-}
+require "res/resources"
 
 function math.lerp(a, b, t)
     return a + (b - a) * t
@@ -81,7 +38,6 @@ end
 local state = game
 
 function love.load()
-    profiler = piefiller:new()
     world = bump.newWorld()
 
     effect = love.graphics.newShader [[
@@ -114,19 +70,16 @@ function love.load()
         }
     ]]
 
+    love.graphics.setDefaultFilter("nearest", "nearest")
     state:load()
 end
 
 function love.update(dt)
-    -- profiler:attach()
     state:update(dt)
-    -- profiler:detach()
 end
 
 function love.draw()
     state:draw()
-    s(unpack(debugSystems))
-    -- profiler:draw()
 end
 
 function love.keypressed(key)
@@ -134,7 +87,6 @@ function love.keypressed(key)
         love.load()
     end
     s.input()
-    profiler:keypressed(key)
 end
 
 function love.keyreleased()

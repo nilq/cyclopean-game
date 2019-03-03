@@ -63,3 +63,18 @@ function love.run()
         if love.timer then love.timer.sleep(0.001) end
     end
 end
+
+function love.conf(t)
+    t.releases = {
+        title = "Cyclopean Simulator",
+        package = "cyclopean-simulator",
+        version = "1.0.0",
+        author = "evolbug, nilq, regsagc",
+        email = "niel6141@niels.brock.dk",
+        description = "a game about being blind",
+        homepage = "https://regsagc.itch.io/cyclopean",
+        identifier = nil,
+        excludeFileList = {},
+        releaseDirectory = nil,
+    }
+end
