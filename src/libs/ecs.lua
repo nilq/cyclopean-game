@@ -54,6 +54,10 @@ function emeta.__index.get(id)
    return e
 end
 
+function emeta.__index.len()
+   return emeta.used
+end
+
 -- new entity type
 -- e.name = components
 function emeta:__newindex(name, components)
