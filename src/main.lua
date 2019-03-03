@@ -37,6 +37,10 @@ function math.cerp(a, b, t)
     return a * (1 - f) + b * f
 end
 
+function math.fuzzy_equals(a, b, tolerance)
+    return a == b or math.abs(a-b) < tolerance
+end
+
 local state = game
 
 function love.load()

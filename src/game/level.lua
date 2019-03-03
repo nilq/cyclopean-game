@@ -2,6 +2,7 @@ local level = {
     size = 20,
     registry = {
         block = {0, 0, 0},
+        fake_block = {0.3, 0.3, 0.3}, -- no collider :p
         checkpoint = {0, 1, 0},
         murderblock = {1, 0, 0},
         lightblock = {0, 0, 1},
@@ -23,7 +24,7 @@ function level:load(path)
             r, g, b = image:getPixel(rx, ry)
 
             for k, v in pairs(self.registry) do
-                if r == v[1] and g == v[2] and b == v[3] then
+                if math.fuzzy_equals(r, v[1], 0.01) and math.fuzzy_equals(g, v[2], 0.01) and math.fuzzy_equals(b, v[3], 0.01) then
                     self:spawn(k, self.size * rx, self.size * ry)
                 end
             end
@@ -42,6 +43,16 @@ function level:spawn(k, x, y)
         local id = e.block(conf)
 
         world:add(id, x, y, conf.size.w, conf.size.h)
+    end
+
+    if k == "fake_block" then
+        local conf = {
+            position = {x = x, y = y},
+            size = {w = 20, h = 20},
+            color = {0, 0, 0}
+        }
+
+        local id = e.block(conf)
     end
 
     if k == "player" then

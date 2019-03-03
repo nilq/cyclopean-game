@@ -15,7 +15,7 @@ function game:load()
 
     --love.window.setMode(200, 500, {fullscreen=true, msaa=0})
 
-    self.camera = camera(200, 500, 1, 1, 0)
+    self.camera = camera(800, 400, 1, 1, 0)
 end
 
 function game:update(dt)
