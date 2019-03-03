@@ -62,7 +62,7 @@ function level:spawn(k, x, y)
             size = {w = 14, h = 19},
             direction = {1},
             sprite = {
-                image = SPRITE_REGISTRY.player
+                image = res.sprite.player
             },
             input = {
                 left = false,

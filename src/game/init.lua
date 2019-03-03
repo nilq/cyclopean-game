@@ -24,8 +24,7 @@ end
 function game:update(dt)
     self.dt = dt
 
-    s(s.player)
-    s(s.inputReset)
+    s(s.player, s.sound, s.inputReset)
 end
 
 function game:draw()
