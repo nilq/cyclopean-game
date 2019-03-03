@@ -4,6 +4,7 @@ s.player = {"position", "size", "physics", "input", "player", "killable"}
 s.player.update = function(i, position, size, physics, input, player, killable)
     physics.grounded = false
     physics.wall_x = 0
+    game.background_delta = -2
 
     -- COLLISIONS --
 
@@ -31,7 +32,7 @@ s.player.update = function(i, position, size, physics, input, player, killable)
         elseif (other.murderous) then
             killable.killed = true
         elseif (other.light) then
-            love.graphics.setBackgroundColor(1, 1, 1)
+            game.background_delta = 1
         elseif (other.color) then
             other.color[1] = 0.15
             other.color[2] = 0.15
@@ -97,4 +98,10 @@ s.player.update = function(i, position, size, physics, input, player, killable)
 
     game.camera.x = math.cerp(game.camera.x, position.x, game.dt * 10)
     game.camera.y = math.cerp(game.camera.y, position.y, game.dt * 10)
+
+
+    -- BACKGROUND --
+
+    game.background_hue = math.max(0, math.min(1, game.background_hue + game.background_delta * game.dt))
+    love.graphics.setBackgroundColor(game.background_hue, game.background_hue, game.background_hue)
 end

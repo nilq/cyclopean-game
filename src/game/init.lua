@@ -16,6 +16,9 @@ function game:load()
     love.window.setMode(200, 500, {fullscreen=true, msaa=0})
 
     self.camera = camera(800, 400, 1, 1, 0)
+
+    self.background_hue = 0
+    self.background_delta = -1
 end
 
 function game:update(dt)
